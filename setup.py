@@ -46,8 +46,8 @@ setup(
     ext_modules=[
         Extension(
             name='snudown',
-            sources=['snudown.c'] + c_files_in('src/') + c_files_in('html/'),
-            include_dirs=['src', 'html']
+            sources=['snudown.c'] + c_files_in('src/') + c_files_in('html/') + c_files_in('houdini/'),
+            include_dirs=['src', 'html', 'houdini']
         )
     ],
 )

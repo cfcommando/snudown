@@ -84,7 +84,7 @@ hash_entity (str, len)
       419, 419, 419, 419, 419, 419, 419, 419, 419, 419,
       419, 419, 419, 419, 419, 419, 419
     };
-  register int hval = len;
+  register unsigned int hval = len;
 
   switch (hval)
     {
@@ -105,12 +105,6 @@ hash_entity (str, len)
   return hval + asso_values[(unsigned char)str[len - 1]];
 }
 
-#ifdef __GNUC__
-__inline
-#ifdef __GNUC_STDC_INLINE__
-__attribute__ ((__gnu_inline__))
-#endif
-#endif
 const struct html_ent *
 find_entity (str, len)
      register const char *str;
@@ -739,9 +733,9 @@ find_entity (str, len)
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
     {
-      register int key = hash_entity (str, len);
+      unsigned int key = hash_entity (str, len);
 
-      if (key <= MAX_HASH_VALUE && key >= 0)
+      if (key <= MAX_HASH_VALUE)
         if (len == lengthtable[key])
           {
             register const char *s = wordlist[key].entity;
